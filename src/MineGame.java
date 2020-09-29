@@ -14,14 +14,16 @@ javax.swing.Timer timer;
     JPanel display;
     Person bob;
     ArrayList<Block> blocks;
+    Coins coin;
 
     public static void main(String[] args) throws Exception {
         new MineGame();
     }
 
     public MineGame() {
-        frame = new JFrame("Insert Title Here");
-        frame.setSize(500, 500);
+        frame = new JFrame("MineGame");
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display = new DisplayPanel();
         frame.add(display);
@@ -46,7 +48,7 @@ javax.swing.Timer timer;
     }
 
     public void actionPerformed(ActionEvent e) {
-        //type what needs to be performed every time the timer ticks
+        bob.move(blocks);
         if (blocks.get(blocks.size() - 1).y < 401) {
             for (int x = 0; x < 500; x += 25) {
                 if (Math.random() > .10) {
@@ -54,36 +56,26 @@ javax.swing.Timer timer;
                 }
             }
         }
-        for (Block block : blocks) {
-            block.moveUp();
-            block.moveUp();
-        }
-
-        //
         
-        //bob.move(blocks);
-        if(bob.getFoot().y>500){
-            JOptionPane.showMessageDialog(frame, "You Escaped!!");
-            System.exit(0);
-        }
-
-        //end your code for timer tick code
         display.repaint();
     }
 
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) 
             bob.setDown(true);
-        }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
+        
+        if (e.getKeyCode() == KeyEvent.VK_UP) 
             bob.setUp(true);
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) 
             bob.setRight(true);
-        }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        
+        if (e.getKeyCode() == KeyEvent.VK_LEFT)
             bob.setLeft(true);
-        }
+            
+        if(e.getKeyCode()==KeyEvent.VK_ESCAPE)
+            System.exit(0);
+        
     }
 
     public void keyTyped(KeyEvent e) {
@@ -115,6 +107,7 @@ javax.swing.Timer timer;
             for (Block block : blocks) {
                 block.draw(g);
             }
+           
     }
 }
 }

@@ -1,7 +1,4 @@
-/**
- *
- * @author J. Barrett
- */
+
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -30,11 +27,11 @@ public class Person extends Rectangle {
     }
 
     public void moveLeft() {
-        x--;
+        x=x-5;
     }
 
     public void moveRight() {
-        x++;
+        x=x+5;
     }
 
     public void moveDown() {
